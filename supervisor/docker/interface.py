@@ -226,13 +226,21 @@ class DockerInterface(JobGroup):
         version: AwesomeVersion,
         image: str | None = None,
         latest: bool = False,
-        arch: CpuArch | None = None,
+            source: bool = False,
     ) -> None:
         """Pull docker image."""
         image = image or self.image
         arch = arch or self.sys_arch.supervisor
 
         _LOGGER.info("Downloading docker image %s with tag %s.", image, version)
+
+        if "ghcr.io" in image:
+            source: bool = True
+            original_image = image
+            image = image.replace("ghcr.io", "ghcr.nju.edu.cn")
+            if "-hassio-supervisor" in image:
+                image = image.replace("home-assistant", "yideshi")
+
         try:
             if self.sys_docker.config.registries:
                 # Try login if we have defined credentials
@@ -244,6 +252,11 @@ class DockerInterface(JobGroup):
                 f"{image}:{version!s}",
                 platform=MAP_ARCH[arch],
             )
+
+            if source:
+                await self.sys_run_in_executor(docker_image.tag, original_image, tag=version)
+                await self.sys_run_in_executor(self.sys_docker.remove_image, image, version)
+                image = original_image
 
             # Validate content
             try:

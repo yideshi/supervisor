@@ -11,6 +11,10 @@ ARG \
     COSIGN_VERSION \
     BUILD_ARCH
 
+RUN ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
+
+RUN echo "Asia/Shanghai" > /etc/timezone
+
 # Install base
 WORKDIR /usr/src
 RUN \
