@@ -30,10 +30,6 @@ RUN \
     && chmod a+x /usr/bin/cosign \
     && pip3 install uv==0.2.21
 
-RUN ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
-
-RUN echo "Asia/Shanghai" > /etc/timezone
-
 # Install requirements
 COPY requirements.txt .
 RUN \

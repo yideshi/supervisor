@@ -1,4 +1,5 @@
 """Constants file for Supervisor."""
+
 from dataclasses import dataclass
 from enum import StrEnum
 from ipaddress import ip_network
@@ -11,9 +12,9 @@ from aiohttp import __version__ as aiohttpversion
 SUPERVISOR_VERSION = "99.9.9dev"
 SERVER_SOFTWARE = f"HomeAssistantSupervisor/{SUPERVISOR_VERSION} aiohttp/{aiohttpversion} Python/{systemversion[0]}.{systemversion[1]}"
 
-URL_HASSIO_ADDONS = "https://gitee.com/smart-assistant/addons"
-URL_HASSIO_APPARMOR = "https://version.tiyicn.cn/version/apparmor_{channel}.txt"
-URL_HASSIO_VERSION = "https://version.tiyicn.cn/version/{channel}.json"
+URL_HASSIO_ADDONS = "https://github.com/home-assistant/addons"
+URL_HASSIO_APPARMOR = "https://version.home-assistant.io/apparmor_{channel}.txt"
+URL_HASSIO_VERSION = "https://version.home-assistant.io/{channel}.json"
 
 SUPERVISOR_DATA = Path("/data")
 
@@ -309,6 +310,8 @@ ATTR_SUPERVISOR_VERSION = "supervisor_version"
 ATTR_SUPPORTED = "supported"
 ATTR_SUPPORTED_ARCH = "supported_arch"
 ATTR_SYSTEM = "system"
+ATTR_SYSTEM_MANAGED = "system_managed"
+ATTR_SYSTEM_MANAGED_CONFIG_ENTRY = "system_managed_config_entry"
 ATTR_TIMEOUT = "timeout"
 ATTR_TIMEZONE = "timezone"
 ATTR_TITLE = "title"
@@ -379,11 +382,26 @@ ROLE_ADMIN = "admin"
 ROLE_ALL = [ROLE_DEFAULT, ROLE_HOMEASSISTANT, ROLE_BACKUP, ROLE_MANAGER, ROLE_ADMIN]
 
 
+class AddonBootConfig(StrEnum):
+    """Boot mode config for the add-on."""
+
+    AUTO = "auto"
+    MANUAL = "manual"
+    MANUAL_ONLY = "manual_only"
+
+
 class AddonBoot(StrEnum):
     """Boot mode for the add-on."""
 
     AUTO = "auto"
     MANUAL = "manual"
+
+    @classmethod
+    def _missing_(cls, value: str) -> Self | None:
+        """Convert 'forced' config values to their counterpart."""
+        if value == AddonBootConfig.MANUAL_ONLY:
+            return AddonBoot.MANUAL
+        return None
 
 
 class AddonStartup(StrEnum):

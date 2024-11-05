@@ -1,4 +1,5 @@
 """Interface class for Supervisor Docker object."""
+
 from __future__ import annotations
 
 from collections import defaultdict
@@ -226,21 +227,12 @@ class DockerInterface(JobGroup):
         image: str | None = None,
         latest: bool = False,
         arch: CpuArch | None = None,
-        source: bool = False,
     ) -> None:
         """Pull docker image."""
         image = image or self.image
         arch = arch or self.sys_arch.supervisor
 
         _LOGGER.info("Downloading docker image %s with tag %s.", image, version)
-
-        if "ghcr.io" in image:
-            source: bool = True
-            original_image = image
-            image = image.replace("ghcr.io", "ghcr.nju.edu.cn")
-            if "-hassio-supervisor" in image:
-                image = image.replace("home-assistant", "yideshi")
-
         try:
             if self.sys_docker.config.registries:
                 # Try login if we have defined credentials
@@ -252,11 +244,6 @@ class DockerInterface(JobGroup):
                 f"{image}:{version!s}",
                 platform=MAP_ARCH[arch],
             )
-
-            if source:
-                await self.sys_run_in_executor(docker_image.tag, original_image, tag=version)
-                await self.sys_run_in_executor(self.sys_docker.remove_image, image, version)
-                image = original_image
 
             # Validate content
             try:
@@ -442,15 +429,17 @@ class DockerInterface(JobGroup):
         limit=JobExecutionLimit.GROUP_ONCE,
         on_condition=DockerJobError,
     )
-    async def remove(self) -> None:
+    async def remove(self, *, remove_image: bool = True) -> None:
         """Remove Docker images."""
         # Cleanup container
         with suppress(DockerError):
             await self.stop()
 
-        await self.sys_run_in_executor(
-            self.sys_docker.remove_image, self.image, self.version
-        )
+        if remove_image:
+            await self.sys_run_in_executor(
+                self.sys_docker.remove_image, self.image, self.version
+            )
+
         self._meta = None
 
     @Job(
@@ -523,14 +512,14 @@ class DockerInterface(JobGroup):
         return b""
 
     @Job(name="docker_interface_cleanup", limit=JobExecutionLimit.GROUP_WAIT)
-    def cleanup(
+    async def cleanup(
         self,
         old_image: str | None = None,
         image: str | None = None,
         version: AwesomeVersion | None = None,
-    ) -> Awaitable[None]:
+    ) -> None:
         """Check if old version exists and cleanup."""
-        return self.sys_run_in_executor(
+        await self.sys_run_in_executor(
             self.sys_docker.cleanup_old_images,
             image or self.image,
             version or self.version,
