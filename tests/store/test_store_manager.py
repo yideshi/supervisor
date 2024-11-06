@@ -45,10 +45,10 @@ async def test_default_load(coresys: CoreSys):
 
     assert len(store_manager.repository_urls) == 3
     assert (
-        "https://github.com/hassio-addons/repository" in store_manager.repository_urls
+        "https://gitee.com/smart-assistant/repository" in store_manager.repository_urls
     )
     assert (
-        "https://github.com/esphome/home-assistant-addon"
+        "https://gitee.com/smart-assistant/esphome"
         in store_manager.repository_urls
     )
     assert (
@@ -94,10 +94,10 @@ async def test_load_with_custom_repository(coresys: CoreSys):
 
     assert len(store_manager.repository_urls) == 4
     assert (
-        "https://github.com/hassio-addons/repository" in store_manager.repository_urls
+        "https://gitee.com/smart-assistant/repository" in store_manager.repository_urls
     )
     assert (
-        "https://github.com/esphome/home-assistant-addon"
+        "https://gitee.com/smart-assistant/esphome"
         in store_manager.repository_urls
     )
     assert (
@@ -128,10 +128,10 @@ async def test_load_from_core_config(coresys: CoreSys):
 
     assert len(coresys.store.repository_urls) == 4
     assert (
-        "https://github.com/hassio-addons/repository" in coresys.store.repository_urls
+        "https://gitee.com/smart-assistant/repository" in coresys.store.repository_urls
     )
     assert (
-        "https://github.com/esphome/home-assistant-addon"
+        "https://gitee.com/smart-assistant/esphome"
         in coresys.store.repository_urls
     )
     assert (

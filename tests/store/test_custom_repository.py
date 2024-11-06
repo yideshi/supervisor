@@ -327,8 +327,8 @@ async def test_repositories_loaded_ignore_updates(
 
     assert len(coresys.resolution.issues) == 0
     assert (
-        "https://github.com/hassio-addons/repository" in coresys.store.repository_urls
+        "https://gitee.com/smart-assistant/repository" in coresys.store.repository_urls
     )
     assert (
-        "https://github.com/hassio-addons/repository" in coresys.store.repository_urls
+        "https://gitee.com/smart-assistant/repository" in coresys.store.repository_urls
     )
