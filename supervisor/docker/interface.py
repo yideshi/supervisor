@@ -226,7 +226,7 @@ class DockerInterface(JobGroup):
         version: AwesomeVersion,
         image: str | None = None,
         latest: bool = False,
-            source: bool = False,
+        source: bool = False,
     ) -> None:
         """Pull docker image."""
         image = image or self.image
