@@ -56,7 +56,7 @@ async def test_repository_validate(repo_list: list[str], valid: bool):
             "local",
             "https://github.com/hassio-addons/repository",
             "https://github.com/esphome/home-assistant-addon",
-            "https://github.com/music-assistant/home-assistant-addon",
+            "https://gitee.com/smart-assistant/music-assistant",
         }
     else:
         with pytest.raises(Invalid):

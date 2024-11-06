@@ -52,7 +52,7 @@ async def test_default_load(coresys: CoreSys):
         in store_manager.repository_urls
     )
     assert (
-        "https://github.com/music-assistant/home-assistant-addon"
+        "https://gitee.com/smart-assistant/music-assistant"
         in store_manager.repository_urls
     )
     # NOTE: When adding new stores, make sure to add it to tests/fixtures/addons/git/
@@ -101,7 +101,7 @@ async def test_load_with_custom_repository(coresys: CoreSys):
         in store_manager.repository_urls
     )
     assert (
-        "https://github.com/music-assistant/home-assistant-addon"
+        "https://gitee.com/smart-assistant/music-assistant"
         in store_manager.repository_urls
     )
     assert "http://example.com" in store_manager.repository_urls
@@ -135,7 +135,7 @@ async def test_load_from_core_config(coresys: CoreSys):
         in coresys.store.repository_urls
     )
     assert (
-        "https://github.com/music-assistant/home-assistant-addon"
+        "https://gitee.com/smart-assistant/music-assistant"
         in coresys.store.repository_urls
     )
     assert "http://example.com" in coresys.store.repository_urls
