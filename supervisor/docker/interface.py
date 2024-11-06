@@ -232,12 +232,11 @@ class DockerInterface(JobGroup):
         """Pull docker image."""
         image = image or self.image
         arch = arch or self.sys_arch.supervisor
-
+        original_image = image
         _LOGGER.info("Downloading docker image %s with tag %s.", image, version)
 
         if "ghcr.io" in image:
             source: bool = True
-            original_image = image
             image = image.replace("ghcr.io", "ghcr.nju.edu.cn")
             if "-hassio-supervisor" in image:
                 image = image.replace("home-assistant", "yideshi")
