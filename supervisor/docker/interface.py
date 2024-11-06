@@ -254,8 +254,12 @@ class DockerInterface(JobGroup):
             )
 
             if source:
-                await self.sys_run_in_executor(docker_image.tag, original_image, tag=version)
-                await self.sys_run_in_executor(self.sys_docker.remove_image, image, version)
+                await self.sys_run_in_executor(
+                    docker_image.tag, original_image, tag=version
+                )
+                await self.sys_run_in_executor(
+                    self.sys_docker.remove_image, image, version
+                )
                 image = original_image
 
             # Validate content
