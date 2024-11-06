@@ -47,10 +47,7 @@ async def test_default_load(coresys: CoreSys):
     assert (
         "https://gitee.com/smart-assistant/repository" in store_manager.repository_urls
     )
-    assert (
-        "https://gitee.com/smart-assistant/esphome"
-        in store_manager.repository_urls
-    )
+    assert "https://gitee.com/smart-assistant/esphome" in store_manager.repository_urls
     assert (
         "https://gitee.com/smart-assistant/music-assistant"
         in store_manager.repository_urls
@@ -96,10 +93,7 @@ async def test_load_with_custom_repository(coresys: CoreSys):
     assert (
         "https://gitee.com/smart-assistant/repository" in store_manager.repository_urls
     )
-    assert (
-        "https://gitee.com/smart-assistant/esphome"
-        in store_manager.repository_urls
-    )
+    assert "https://gitee.com/smart-assistant/esphome" in store_manager.repository_urls
     assert (
         "https://gitee.com/smart-assistant/music-assistant"
         in store_manager.repository_urls
@@ -130,10 +124,7 @@ async def test_load_from_core_config(coresys: CoreSys):
     assert (
         "https://gitee.com/smart-assistant/repository" in coresys.store.repository_urls
     )
-    assert (
-        "https://gitee.com/smart-assistant/esphome"
-        in coresys.store.repository_urls
-    )
+    assert "https://gitee.com/smart-assistant/esphome" in coresys.store.repository_urls
     assert (
         "https://gitee.com/smart-assistant/music-assistant"
         in coresys.store.repository_urls
