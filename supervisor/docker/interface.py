@@ -237,7 +237,7 @@ class DockerInterface(JobGroup):
 
         # if "ghcr.io" in image:
         #     source: bool = True
-        #     image = image.replace("ghcr.io", "ghcr.nju.edu.cn")
+        #     image = image.replace("ghcr.io", "ghcr.nju.edu.cn" )
         #     if "-hassio-supervisor" in image:
         #         image = image.replace("home-assistant", "yideshi")
 
