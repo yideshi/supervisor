@@ -278,13 +278,27 @@ class Updater(FileConfiguration, CoreSysAttributes):
             self._data[ATTR_MULTICAST] = AwesomeVersion(data["multicast"])
 
             # Update images for that versions
-            self._data[ATTR_IMAGE][ATTR_HOMEASSISTANT] = data["images"]["core"]
-            self._data[ATTR_IMAGE][ATTR_SUPERVISOR] = data["images"]["supervisor"]
-            self._data[ATTR_IMAGE][ATTR_AUDIO] = data["images"]["audio"]
-            self._data[ATTR_IMAGE][ATTR_CLI] = data["images"]["cli"]
-            self._data[ATTR_IMAGE][ATTR_DNS] = data["images"]["dns"]
-            self._data[ATTR_IMAGE][ATTR_OBSERVER] = data["images"]["observer"]
-            self._data[ATTR_IMAGE][ATTR_MULTICAST] = data["images"]["multicast"]
+            self._data[ATTR_IMAGE][ATTR_HOMEASSISTANT] = data["images"]["core"].replace(
+                "ghcr.io", "ghcr.nju.edu.cn"
+            )
+            self._data[ATTR_IMAGE][ATTR_SUPERVISOR] = data["images"][
+                "supervisor"
+            ].replace("ghcr.io", "ghcr.nju.edu.cn")
+            self._data[ATTR_IMAGE][ATTR_AUDIO] = data["images"]["audio"].replace(
+                "ghcr.io", "ghcr.nju.edu.cn"
+            )
+            self._data[ATTR_IMAGE][ATTR_CLI] = data["images"]["cli"].replace(
+                "ghcr.io", "ghcr.nju.edu.cn"
+            )
+            self._data[ATTR_IMAGE][ATTR_DNS] = data["images"]["dns"].replace(
+                "ghcr.io", "ghcr.nju.edu.cn"
+            )
+            self._data[ATTR_IMAGE][ATTR_OBSERVER] = data["images"]["observer"].replace(
+                "ghcr.io", "ghcr.nju.edu.cn"
+            )
+            self._data[ATTR_IMAGE][ATTR_MULTICAST] = data["images"][
+                "multicast"
+            ].replace("ghcr.io", "ghcr.nju.edu.cn")
 
         except KeyError as err:
             raise UpdaterError(
