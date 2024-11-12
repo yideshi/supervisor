@@ -6,7 +6,7 @@ on:
       channel:
         description: "Channel"
         required: true
-        default: "dev"
+        default: "false"
       version:
         description: "Version"
         required: true
@@ -23,7 +23,7 @@ on:
   release:
     types: ["published"]
   push:
-#    branches: ["main"]
+    branches: ["main"]
     paths:
       - "rootfs/**"
       - "supervisor/**"
