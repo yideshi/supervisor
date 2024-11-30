@@ -30,7 +30,7 @@ def init_sentry(coresys: CoreSys) -> None:
     if not sentry_connected():
         _LOGGER.info("Initializing Supervisor Sentry")
         sentry_sdk.init(
-            dsn="https://f6c62aef84b91505ea9e1294712ebc3f@o4508234686267392.ingest.de.sentry.io/4508284301475920",
+            dsn="https://9c6ea70f49234442b4746e447b24747e@o427061.ingest.sentry.io/5370612",
             before_send=lambda event, hint: filter_data(coresys, event, hint),
             auto_enabling_integrations=False,
             default_integrations=False,

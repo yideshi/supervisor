@@ -16,8 +16,8 @@ requires-python = ">=3.12.0"
 
 [project.urls]
 "Homepage" = "https://www.home-assistant.io/"
-"Source Code" = "https://github.com/yideshi/supervisor"
-"Bug Reports" = "https://github.com/yideshi/supervisor/issues"
+"Source Code" = "https://github.com/home-assistant/supervisor"
+"Bug Reports" = "https://github.com/home-assistant/supervisor/issues"
 "Docs: Dev" = "https://developers.home-assistant.io/"
 "Discord" = "https://www.home-assistant.io/join-chat/"
 "Forum" = "https://community.home-assistant.io/"

@@ -516,10 +516,10 @@ def store_addon(coresys: CoreSys, tmp_path, repository):
 async def repository(coresys: CoreSys):
     """Repository fixture."""
     coresys.store._data[ATTR_REPOSITORIES].remove(
-        "https://gitee.com/smart-assistant/repository"
+        "https://github.com/hassio-addons/repository"
     )
     coresys.store._data[ATTR_REPOSITORIES].remove(
-        "https://gitee.com/smart-assistant/esphome"
+        "https://github.com/esphome/home-assistant-addon"
     )
     coresys.config._data[ATTR_ADDONS_CUSTOM_LIST] = []
 

@@ -45,14 +45,14 @@ async def test_default_load(coresys: CoreSys):
 
     assert len(store_manager.repository_urls) == 3
     assert (
-        "https://gitee.com/smart-assistant/repository" in store_manager.repository_urls
+        "https://github.com/hassio-addons/repository" in store_manager.repository_urls
     )
     assert (
-        "https://gitee.com/smart-assistant/esphome"
+        "https://github.com/esphome/home-assistant-addon"
         in store_manager.repository_urls
     )
     assert (
-        "https://gitee.com/smart-assistant/music-assistant"
+        "https://github.com/music-assistant/home-assistant-addon"
         in store_manager.repository_urls
     )
     # NOTE: When adding new stores, make sure to add it to tests/fixtures/addons/git/
@@ -88,14 +88,14 @@ async def test_load_with_custom_repository(coresys: CoreSys):
 
     assert len(store_manager.repository_urls) == 4
     assert (
-        "https://gitee.com/smart-assistant/repository" in store_manager.repository_urls
+        "https://github.com/hassio-addons/repository" in store_manager.repository_urls
     )
     assert (
-        "https://gitee.com/smart-assistant/esphome"
+        "https://github.com/esphome/home-assistant-addon"
         in store_manager.repository_urls
     )
     assert (
-        "https://gitee.com/smart-assistant/music-assistant"
+        "https://github.com/music-assistant/home-assistant-addon"
         in store_manager.repository_urls
     )
     assert "http://example.com" in store_manager.repository_urls
@@ -120,14 +120,14 @@ async def test_load_from_core_config(coresys: CoreSys):
 
     assert len(coresys.store.repository_urls) == 4
     assert (
-        "https://gitee.com/smart-assistant/repository" in coresys.store.repository_urls
+        "https://github.com/hassio-addons/repository" in coresys.store.repository_urls
     )
     assert (
-        "https://gitee.com/smart-assistant/esphome"
+        "https://github.com/esphome/home-assistant-addon"
         in coresys.store.repository_urls
     )
     assert (
-        "https://gitee.com/smart-assistant/music-assistant"
+        "https://github.com/music-assistant/home-assistant-addon"
         in coresys.store.repository_urls
     )
     assert "http://example.com" in coresys.store.repository_urls

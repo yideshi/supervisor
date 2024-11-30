@@ -6,9 +6,9 @@ from ..const import ATTR_MAINTAINER, ATTR_NAME, ATTR_REPOSITORIES, ATTR_URL
 from ..validate import RE_REPOSITORY
 from .const import StoreType
 
-URL_COMMUNITY_ADDONS = "https://gitee.com/smart-assistant/repository"
-URL_ESPHOME = "https://gitee.com/smart-assistant/esphome"
-URL_MUSIC_ASSISTANT = "https://gitee.com/smart-assistant/music-assistant"
+URL_COMMUNITY_ADDONS = "https://github.com/hassio-addons/repository"
+URL_ESPHOME = "https://github.com/esphome/home-assistant-addon"
+URL_MUSIC_ASSISTANT = "https://github.com/music-assistant/home-assistant-addon"
 BUILTIN_REPOSITORIES = {
     StoreType.CORE,
     StoreType.LOCAL,

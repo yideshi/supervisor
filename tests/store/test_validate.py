@@ -13,7 +13,7 @@ from supervisor.store.validate import SCHEMA_STORE_FILE, repositories
     [
         {},
         {ATTR_REPOSITORIES: []},
-        {ATTR_REPOSITORIES: ["https://gitee.com/smart-assistant/esphome"]},
+        {ATTR_REPOSITORIES: ["https://github.com/esphome/home-assistant-addon"]},
     ],
 )
 async def test_default_config(config: dict[Any]):
@@ -22,13 +22,13 @@ async def test_default_config(config: dict[Any]):
     assert ATTR_REPOSITORIES in conf
     assert "core" in conf[ATTR_REPOSITORIES]
     assert "local" in conf[ATTR_REPOSITORIES]
-    assert "https://gitee.com/smart-assistant/repository" in conf[ATTR_REPOSITORIES]
+    assert "https://github.com/hassio-addons/repository" in conf[ATTR_REPOSITORIES]
     assert (
         len(
             [
                 repo
                 for repo in conf[ATTR_REPOSITORIES]
-                if repo == "https://gitee.com/smart-assistant/esphome"
+                if repo == "https://github.com/esphome/home-assistant-addon"
             ]
         )
         == 1
@@ -40,7 +40,7 @@ async def test_default_config(config: dict[Any]):
     [
         ([], True),
         (["core", "local"], True),
-        (["https://gitee.com/smart-assistant/repository"], True),
+        (["https://github.com/hassio-addons/repository"], True),
         (["not_a_url"], False),
         (["https://fail.com/duplicate", "https://fail.com/duplicate"], False),
     ],
@@ -53,9 +53,9 @@ async def test_repository_validate(repo_list: list[str], valid: bool):
         assert set(repositories(repo_list)) == {
             "core",
             "local",
-            "https://gitee.com/smart-assistant/repository",
-            "https://gitee.com/smart-assistant/esphome",
-            "https://gitee.com/smart-assistant/music-assistant",
+            "https://github.com/hassio-addons/repository",
+            "https://github.com/esphome/home-assistant-addon",
+            "https://github.com/music-assistant/home-assistant-addon",
         }
     else:
         with pytest.raises(Invalid):

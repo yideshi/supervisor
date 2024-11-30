@@ -161,9 +161,9 @@ async def test_preinstall_valid_repository(
         await store_manager.update_repositories(BUILTIN_REPOSITORIES)
         assert store_manager.get("core").validate()
         assert store_manager.get("local").validate()
-        assert store_manager.get("8635ff6f").validate()
-        assert store_manager.get("bdfab9c4").validate()
-        assert store_manager.get("b3e55fcc").validate()
+        assert store_manager.get("a0d7b954").validate()
+        assert store_manager.get("5c53de3b").validate()
+        assert store_manager.get("d5369777").validate()
 
 
 @pytest.mark.parametrize("use_update", [True, False])
@@ -299,8 +299,8 @@ async def test_repositories_loaded_ignore_updates(
 
     assert len(coresys.resolution.issues) == 0
     assert (
-        "https://gitee.com/smart-assistant/repository" in coresys.store.repository_urls
+        "https://github.com/hassio-addons/repository" in coresys.store.repository_urls
     )
     assert (
-        "https://gitee.com/smart-assistant/repository" in coresys.store.repository_urls
+        "https://github.com/hassio-addons/repository" in coresys.store.repository_urls
     )

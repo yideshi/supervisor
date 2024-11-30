@@ -11,9 +11,9 @@ from aiohttp import __version__ as aiohttpversion
 SUPERVISOR_VERSION = "99.9.9dev"
 SERVER_SOFTWARE = f"HomeAssistantSupervisor/{SUPERVISOR_VERSION} aiohttp/{aiohttpversion} Python/{systemversion[0]}.{systemversion[1]}"
 
-URL_HASSIO_ADDONS = "https://gitee.com/smart-assistant/addons"
-URL_HASSIO_APPARMOR = "https://version.tiyicn.cn/apparmor_{channel}.txt"
-URL_HASSIO_VERSION = "https://version.tiyicn.cn/{channel}.json"
+URL_HASSIO_ADDONS = "https://github.com/home-assistant/addons"
+URL_HASSIO_APPARMOR = "https://version.home-assistant.io/apparmor_{channel}.txt"
+URL_HASSIO_VERSION = "https://version.home-assistant.io/{channel}.json"
 
 SUPERVISOR_DATA = Path("/data")
 
