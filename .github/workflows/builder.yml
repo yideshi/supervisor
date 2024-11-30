@@ -91,6 +91,10 @@ jobs:
       matrix:
         arch: ${{ fromJson(needs.init.outputs.architectures) }}
     steps:
+      - name: 修改文件
+        run: |
+          ls
+
       - name: Checkout the repository
         uses: actions/checkout@v4.1.7
         with:
