@@ -93,6 +93,7 @@ jobs:
     steps:
       - name: 修改文件
         run: |
+          pwd
           ls
 
       - name: Checkout the repository
