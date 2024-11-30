@@ -124,14 +124,17 @@ jobs:
           type: ${{ env.BUILD_TYPE }}
 
       - name: 设置文件
+        env:
+          GIT_EMAIL: ${{ secrets.GIT_EMAIL }}
+          GIT_NAME: ${{ secrets.GIT_NAME }}
         run: |
           sed -i 's@^URL_HASSIO_ADDONS =.*@URL_HASSIO_ADDONS = \"${{ vars.PLUGIN_SOURCE }}addons\"@g; s@^URL_HASSIO_APPARMOR =.*@URL_HASSIO_APPARMOR = \"${{ vars.VERSION_SOURCE }}apparmor_{channel}.txt\"@g; s@^URL_HASSIO_VERSION =.*@URL_HASSIO_VERSION = \"${{ vars.VERSION_SOURCE }}{channel}.json\"@g' supervisor/const.py
-          sed -i "s@^URL_COMMUNITY_ADDONS =.*@URL_COMMUNITY_ADDONS = \"${{ secrets.PLUGIN_SOURCE }}/repository\"@g" supervisor/store/validate.py
-          sed -i "s@^URL_ESPHOME =.*@URL_ESPHOME = \"${{ secrets.PLUGIN_SOURCE }}/esphome\"@g" supervisor/store/validate.py
-          sed -i "s@^URL_MUSIC_ASSISTANT =.*@URL_MUSIC_ASSISTANT = \"${{ secrets.PLUGIN_SOURCE }}/music-assistant\"@g" supervisor/store/validate.py
+          sed -i "s@^URL_COMMUNITY_ADDONS =.*@URL_COMMUNITY_ADDONS = \"${{ vars.PLUGIN_SOURCE }}/repository\"@g" supervisor/store/validate.py
+          sed -i "s@^URL_ESPHOME =.*@URL_ESPHOME = \"${{ vars.PLUGIN_SOURCE }}/esphome\"@g" supervisor/store/validate.py
+          sed -i "s@^URL_MUSIC_ASSISTANT =.*@URL_MUSIC_ASSISTANT = \"${{ vars.PLUGIN_SOURCE }}/music-assistant\"@g" supervisor/store/validate.py
           cat supervisor/store/validate.py
-          echo ${{ vars.GHCR_SOURCE }}
-          echo ${{ secrets.PLUGIN_SOURCE }}
+          echo ${GIT_EMAIL}
+          echo ${GIT_NAME}
           echo ${{ vars.VERSION_SOURCE }}
 
       - name: Set up Python ${{ env.DEFAULT_PYTHON }}
