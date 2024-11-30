@@ -91,11 +91,6 @@ jobs:
       matrix:
         arch: ${{ fromJson(needs.init.outputs.architectures) }}
     steps:
-      - name: 修改文件
-        run: |
-          pwd
-          ls
-
       - name: Checkout the repository
         uses: actions/checkout@v4.1.7
         with:
@@ -127,6 +122,11 @@ jobs:
         uses: yideshi/actions/helpers/version@master
         with:
           type: ${{ env.BUILD_TYPE }}
+
+      - name: 设置文件
+        run: |
+          pwd
+          ls
 
       - name: Set up Python ${{ env.DEFAULT_PYTHON }}
         if: needs.init.outputs.publish == 'true'
