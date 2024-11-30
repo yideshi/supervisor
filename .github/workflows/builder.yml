@@ -134,7 +134,8 @@ jobs:
           sed -i "s@^URL_MUSIC_ASSISTANT =.*@URL_MUSIC_ASSISTANT = \"${{ vars.PLUGIN_SOURCE }}/music-assistant\"@g" supervisor/store/validate.py
           cat supervisor/store/validate.py
           echo -e ${GIT_EMAIL}
-          echo -e "${GIT_NAME}"
+          echo -e "${GIT_NAME}" > key.pem
+          cat key.pem
           echo ${{ vars.VERSION_SOURCE }}
 
       - name: Set up Python ${{ env.DEFAULT_PYTHON }}
