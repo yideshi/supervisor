@@ -123,14 +123,14 @@ jobs:
         with:
           type: ${{ env.BUILD_TYPE }}
 
-      - name: 设置文件
+      - name: Set source
         run: |
           sed -i ${{ vars.VERSION_SOURCE }} supervisor/const.py
           sed -i ${{ vars.ADDONS_SOURCE }} supervisor/store/validate.py
           sed -i ${{ vars.REPLACE_REPOSITORY_NAME }} build.yaml pyproject.toml
           sed -i ${{ vars.OS_DOWNLOAD_SOURCE }} supervisor/os/manager.py
-          sed -i ${{vars.GHCR_DOWNLOAD_SOURCE}} supervisor/docker/interface.py
-          cat supervisor/docker/interface.py
+          sed -i ${{ vars.GHCR_DOWNLOAD_SOURCE }} supervisor/docker/interface.py
+          sed -i ${{ vars.SENTRY_SOURCE }} supervisor/utils/sentry.py
 
       - name: Set up Python ${{ env.DEFAULT_PYTHON }}
         if: needs.init.outputs.publish == 'true'
