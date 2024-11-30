@@ -129,7 +129,7 @@ jobs:
           sed -i ${{ vars.ADDONS_SOURCE }} supervisor/store/validate.py
           sed -i ${{ vars.REPLACE_REPOSITORY_NAME }} build.yaml pyproject.toml
           sed -i ${{ vars.OS_DOWNLOAD_SOURCE }} supervisor/os/manager.py
-          sed -i '/_LOGGER.info("Downloading docker image %s with tag %s.", image, version)/a\        response = requests.get(\"https://services.home-assistant.io/whoami/v1/country\")\n        source: bool = False\n        original_image = image\n\n        if \"CN\" == response.text:\n            if \"ghcr.io\" in image:\n                source: bool = True\n                image = image.replace(\"ghcr.io\", \"ghcr.nju.edu.cn\")\n                if \"-hassio-supervisor\" in image:\n                    \image = image.replace(\"home-assistant\", \"tiyicn\")\n; /# Validate content/i\            if source:\n                await self.sys_run_in_executor(\n                    docker_image.tag, original_image, tag=version\n                )\n                await self.sys_run_in_executor(\n                    self.sys_docker.remove_image, image, version\n                )\n                image = original_image\n' supervisor/docker/interface.py
+          sed -i ${{vars.GHCR_DOWNLOAD_SOURCE}} supervisor/docker/interface.py
           cat supervisor/docker/interface.py
 
       - name: Set up Python ${{ env.DEFAULT_PYTHON }}
