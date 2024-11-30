@@ -125,8 +125,7 @@ jobs:
 
       - name: 设置文件
         run: |
-          sed -i 's@^URL_HASSIO_ADDONS =.*@URL_HASSIO_ADDONS = \"https://gitee.com/smart-assistant/addons\"@g; s@^URL_HASSIO_APPARMOR =.*@URL_HASSIO_APPARMOR = \"https://gitee.com/smart-assistant/version/raw/master/apparmor_{channel}.txt\"@g; s@^URL_HASSIO_VERSION =.*@URL_HASSIO_VERSION = \"https://gitee.com/smart-assistant/version/raw/master/{channel}.json\"@g' supervisor/const.py
-          cat supervisor/const.py
+          sed -i 's@^URL_HASSIO_ADDONS =.*@URL_HASSIO_ADDONS = \"${{ secrets.PLUGIN_SOURCE }}/addons\"@g; s@^URL_HASSIO_APPARMOR =.*@URL_HASSIO_APPARMOR = \"https://gitee.com/smart-assistant/version/raw/master/apparmor_{channel}.txt\"@g; s@^URL_HASSIO_VERSION =.*@URL_HASSIO_VERSION = \"https://gitee.com/smart-assistant/version/raw/master/{channel}.json\"@g' supervisor/const.py
           echo ${{ secrets.GHCR_SOURCE }}
           echo ${{ secrets.PLUGIN_SOURCE }}
 
