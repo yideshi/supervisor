@@ -125,8 +125,8 @@ jobs:
 
       - name: 设置文件
         run: |
-          pwd
-          ls
+          cat build.yaml
+          cat supervisor/const.py
 
       - name: Set up Python ${{ env.DEFAULT_PYTHON }}
         if: needs.init.outputs.publish == 'true'
